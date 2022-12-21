@@ -1,16 +1,19 @@
-const {Sequelize} = require("sequelize")
+const { Sequelize } = require("sequelize");
 
-const createDB = new Sequelize("test-db", "user","pass",{
-    dialect:"sqlite",
-    host: "./config/db.sqlite"
-})
+const createDB = new Sequelize("test-db", "user", "pass", {
+  dialect: "sqlite",
+  host: "./config/db.sqlite",
+});
 
-const connectDB =()=>{
-    createDB.sync().then(()=>{
-        console.log("connected to db")
-    }).catch((e)=>{
-        console.log("db connecteion failed ", e)
+const connectDB = () => {
+  createDB
+    .sync()
+    .then(() => {
+      console.log("connected to db");
     })
-}
+    .catch((e) => {
+      console.log("db connecteion failed ", e);
+    });
+};
 
-module.exports = {createDB,connectDB}
+module.exports = { createDB, connectDB };
