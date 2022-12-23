@@ -3,7 +3,7 @@ const { createDB } = require("../config/db.js");
 const { DataTypes } = require("sequelize");
 const orderModel = require("./orderModel");
 
-const User = createDB.define("user", {
+const Product = createDB.define("product", {
   id: {
     primaryKey: true,
     allowNull: false,
@@ -11,10 +11,9 @@ const User = createDB.define("user", {
     type: DataTypes.INTEGER,
   },
   name: DataTypes.STRING,
-  email: DataTypes.STRING,
-  password: DataTypes.STRING,
-  isSeller: { type: DataTypes.BOOLEAN, defaultValue: false },
+  price: DataTypes.DECIMAL,
+  content: DataTypes.STRING,
 });
 
-module.exports = User;
-// User.hasMany(orderModel, { foreignKey: "id" });
+module.exports = Product;
+// Product.hasMany(orderModel, { foreignKey: "id" });

@@ -5,7 +5,7 @@ const userRoute = require("./routes/user");
 const productRoute = require("./routes/product");
 connectDB();
 
-const PORT = 5006;
+const PORT = 3010;
 
 // middlewares
 app.use(express.json());
