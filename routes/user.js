@@ -15,9 +15,12 @@ router.post("/signup", async (req, res) => {
   //   console.log("check error level 0");
   try {
     // taking inputs from user for signup
+    console.log("consoling res.body as it is coming undefined", res.body);
     const { name, email, password, isSeller } = req.body;
     // checking if user already exists
     // console.log("check error level 0.5");
+    console.log("consoling email as it is coming undefined", email);
+    console.log("consoling name,pass,seller:", name, password, isSeller);
     const existingUser = await User.findOne({ where: { email: email } });
     // console.log("check error level 0.8");
     if (existingUser) {

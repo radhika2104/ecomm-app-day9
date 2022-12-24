@@ -1,8 +1,10 @@
 const express = require("express");
+require("dotenv").config();
 const { isAuthenticated, isSeller, isBuyer } = require("../middlewares/auth");
 const Order = require("../models/orderModel");
 const Product = require("../models/productModel");
 const upload = require("../utils/fileUpload");
+
 const router = express.Router();
 
 const { WebhookClient } = require("discord.js");
@@ -12,10 +14,8 @@ const webhookClient = new WebhookClient({
   url: "https://discord.com/api/webhooks/1055480440363958332/Lq3fCCAwCo0UoCxRruHuMmOXw5B26-HeDOW9WrtAu9rdVFxSoumXo0FxRTv8oScfKf-S",
 });
 
-// stripe secret key - sk_test_51MHoEsSFkkhYozOdB0XAyM4u3SXMTnmNONPE0LyaS6cV0vSeAmxPSr9HUxb3iTvx9ZBrMHAK8DmRYXvu90mY56Ga00DffOYFyv
-const stripe = require("stripe")(
-  "sk_test_51MHoEsSFkkhYozOdB0XAyM4u3SXMTnmNONPE0LyaS6cV0vSeAmxPSr9HUxb3iTvx9ZBrMHAK8DmRYXvu90mY56Ga00DffOYFyv"
-);
+// stripe secret key in .env file
+const stripe = require("stripe")(process.env.STRIPE_KEY);
 
 router.post("/create", isAuthenticated, isSeller, (req, res) => {
   try {

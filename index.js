@@ -3,9 +3,11 @@ const app = express();
 const { connectDB } = require("./config/db");
 const userRoute = require("./routes/user");
 const productRoute = require("./routes/product");
-connectDB();
+require("dotenv").config();
 
-const PORT = 3010;
+const PORT = process.env.PORT;
+
+connectDB();
 
 // middlewares
 app.use(express.json());
