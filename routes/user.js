@@ -10,7 +10,62 @@ const {
   validatePassword,
 } = require("../utils/validators");
 // console.log("does code enter this file? ");
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *    User:
+ *      type: object
+ *      required:
+ *        - name
+ *        - email
+ *        - password
+ *        - isSeller
+ *      properties:
+ *        id:
+ *          type: INTEGER
+ *          description: auto-generated id
+ *        name:
+ *          type: STRING
+ *          description: name of user
+ *        email:
+ *          type: STRING
+ *          description: email of user
+ *        password:
+ *          type: STRING
+ *          description: password of user
+ *        isSeller:
+ *          type: BOOLEAN
+ *          description: whether user is a seller
+ *      example:
+ *        name: Radhika
+ *        email: radhika@gmail.com
+ *        password: asdf@123
+ *        isSeller: false
+ *
+ */
 
+/**
+ * @swagger
+ * /api/v1/user/signup:
+ *  post:
+ *    summary: creating a new user
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *              $ref: '#/components/schemas/User'
+ *    responses:
+ *      201:
+ *         description: The user was successfully created
+ *      403:
+ *         description: There was already an existing user with the same email
+ *      400:
+ *         description: Validation failed for the name, email or password
+ *      500:
+ *         description: Some server error
+ */
 router.post("/signup", async (req, res) => {
   //   console.log("check error level 0");
   try {
